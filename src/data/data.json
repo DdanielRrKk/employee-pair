@@ -1,0 +1,20 @@
+[
+    {
+        "EmpID": "143",
+        "ProjectID": "12",
+        "DateFrom": "2013-11-01",
+        "DateTo": "2014-01-05"
+    },
+    {
+        "EmpID": "218",
+        "ProjectID": "10",
+        "DateFrom": "2012-05-16",
+        "DateTo": "NULL"
+    },
+    {
+        "EmpID": "143",
+        "ProjectID": "10",
+        "DateFrom": "2009-01-01",
+        "DateTo": "2011-04-27"
+    }
+]
