@@ -1,0 +1,46 @@
+.container {
+    width: 20%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    padding: 10px;
+    background-color: white;
+}
+
+.container > h3 {
+    width: 100%;
+    text-align: left;
+}
+
+.inputs {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.reset {
+    width: 100%;
+    background-color: black;
+    color: white;
+    padding: 3px 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.reset:hover {
+    background-color: white;
+    color: black;
+}

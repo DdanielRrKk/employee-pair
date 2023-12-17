@@ -1,10 +1,13 @@
-import logo from './logo.svg';
+import Home from './pages/home/Home';
+
 import './App.css';
 
-import Home from './pages/Home/Home';
-
 function App() {
-	return <Home />;
+	return (
+		<main className='container'>
+			<Home />
+		</main>
+	);
 }
 
 export default App;
