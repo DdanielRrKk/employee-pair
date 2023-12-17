@@ -1,53 +1,66 @@
-import {useState} from 'react';
-import {convertCSVToArray, sanitazeArray} from '../../utils/converters';
+import {useState, useEffect} from 'react';
+
+import {convertCSVToArray, convertJSONToArray} from '../../utils/converters';
+import {getLongestWorkingEmployeePair} from '../../utils/analizers';
+
+import StatisticsPanel from '../../components/StatisticsPanel/StatisticsPanel';
+import FileInput from '../../components/FileInput/FileInput';
+import EmployeeTable from '../../components/table/EmployeeTable/EmployeeTable';
+
 import styles from './Home.module.css';
 
 function Home() {
-	const [dataArray, setDataArray] = useState([]);
+	const [employeeArray, setEmployeeArray] = useState([]);
+	const [longestWorkingEmployeePair, setLongestWorkingEmployeePair] = useState(null);
+
+	useEffect(() => {
+		const pair = getLongestWorkingEmployeePair(employeeArray);
+		setLongestWorkingEmployeePair(pair);
+		console.log(pair);
+	}, [employeeArray]);
 
 	const handleFileUpload = e => {
 		e.preventDefault();
 		const file = e.target.files[0];
-
 		if (!file) return;
 
 		const fileExtension = file.name.split('.').pop().toLowerCase();
-		console.log(fileExtension);
-
 		const reader = new FileReader();
 		switch (fileExtension) {
 			case 'csv':
 				reader.onload = e => {
 					const array = convertCSVToArray(reader.result);
-					setDataArray(array);
+					setEmployeeArray(array);
 				};
 				break;
-
 			case 'json':
 				reader.onload = e => {
-					const array = JSON.parse(reader.result);
-					setDataArray(array);
+					const array = convertJSONToArray(reader.result);
+					setEmployeeArray(array);
 				};
 				break;
-
 			default:
-				console.log('Invalid file type');
-				break;
+				throw new Error('Not supported file type');
 		}
-
 		reader.readAsText(e.target.files[0]);
 	};
 
 	return (
 		<div className={styles.container}>
-			<h1>Employee Pairs</h1>
+			<div className={styles.content}>
+				<h1>Employee Pairs</h1>
+				<FileInput uploadHandler={handleFileUpload} />
 
-			<div className='inputs'>
-				<label>Upload CSV/JSON</label>
-				<input
-					type='file'
-					onChange={handleFileUpload}
-				/>
+				{!!employeeArray && (
+					<>
+						<StatisticsPanel pair={longestWorkingEmployeePair} />
+
+						<div>
+							<h2>Employee List</h2>
+							<EmployeeTable employees={employeeArray} />
+						</div>
+					</>
+				)}
 			</div>
 		</div>
 	);

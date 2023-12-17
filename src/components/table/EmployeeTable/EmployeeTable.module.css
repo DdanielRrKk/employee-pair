@@ -1,0 +1,13 @@
+.table {
+    width: 100%;
+    margin: 0px auto;
+    border: 1px solid black;
+}
+
+.table > thead {
+    background-color: black;
+    color: white;
+}
+.table > tbody {
+    color: black;
+}
