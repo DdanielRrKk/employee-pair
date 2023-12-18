@@ -2,16 +2,22 @@ const REGEX_WHITESPACES = /\r\n|\r|\n/;
 
 const CSV_SEPARATOR = ', ';
 
-const SORT_DROPDOWN_OPTIONS = [
+const DROPDOWN_OPTIONS = [
 	{value: 'EmpID', label: 'EmpID'},
 	{value: 'ProjectID', label: 'ProjectID'},
 	{value: 'DateFrom', label: 'DateFrom'},
 	{value: 'DateTo', label: 'DateTo'},
 ];
 const FILTER_OPTIONS = [
-	{value: 'all', label: 'All'},
 	{value: 'working', label: 'Currently Working'},
 	{value: 'notWorking', label: 'Finished Working'},
 ];
 
-export {REGEX_WHITESPACES, CSV_SEPARATOR, SORT_DROPDOWN_OPTIONS, FILTER_OPTIONS};
+const DATE_FORMATS_REGEX_ARRAY = [
+	/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/,
+	/^[0-9]{2}-[0-9]{2}-[0-9]{4}$/,
+	/^[0-9]{4}\/[0-9]{2}\/[0-9]{2}$/,
+	/^[0-9]{2}\/[0-9]{2}\/[0-9]{4}$/,
+];
+
+export {REGEX_WHITESPACES, CSV_SEPARATOR, DROPDOWN_OPTIONS, FILTER_OPTIONS, DATE_FORMATS_REGEX_ARRAY};

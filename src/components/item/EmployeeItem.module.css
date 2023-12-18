@@ -3,25 +3,20 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     gap: 30px;
     padding: 6px 10px;
-    border: 1px solid black;
+    background-color: white;
     border-radius: 5px;
 }
 
-.header, .info {
+.container > div {
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 10px
+    text-align: center;
 }
 
-.header > p, .info > p {
-    width: 100%;
-    padding: 6px 20px;
+.header, .info {
+    padding: 6px;
 }
 
 .header {
@@ -29,9 +24,7 @@
 }
 
 .info {
-    text-align: center;
-}
-.info > p {
     background-color: gray;
     color: white;
+    border-radius: 10px;
 }

@@ -1,0 +1,25 @@
+.navbar {
+    width: 100%;
+    justify-content: flex-start;
+}
+
+.navbar > ul {
+    gap: 30px;
+}
+
+.navbar, .navbar > ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.navbar > span {
+    margin-right: 30px;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.navbar > ul > li > a {
+    font-size: 18px;
+    font-weight: 600;
+}

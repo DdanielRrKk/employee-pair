@@ -5,18 +5,21 @@ function EmployeeItem({employee}) {
 	const dateTo = employee?.DateTo.toLocaleDateString();
 	return (
 		<div className={styles.container}>
-			<div className={styles.header}>
-				<p>EmpID:</p>
-				<p>ProjectID:</p>
-				<p>DateFrom:</p>
-				<p>DateTo:</p>
+			<div>
+				<p className={styles.header}>EmpID</p>
+				<p className={styles.info}>{employee.EmpID}</p>
 			</div>
-
-			<div className={styles.info}>
-				<p>{employee.EmpID}</p>
-				<p>{employee.ProjectID}</p>
-				<p>{dateFrom}</p>
-				<p>{dateTo}</p>
+			<div>
+				<p className={styles.header}>ProjectID</p>
+				<p className={styles.info}>{employee.ProjectID}</p>
+			</div>
+			<div>
+				<p className={styles.header}>DateFrom</p>
+				<p className={styles.info}>{dateFrom}</p>
+			</div>
+			<div>
+				<p className={styles.header}>DateTo</p>
+				<p className={styles.info}>{dateTo}</p>
 			</div>
 		</div>
 	);

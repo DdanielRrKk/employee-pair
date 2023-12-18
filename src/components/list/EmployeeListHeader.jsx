@@ -1,5 +1,5 @@
 import DropdownMenu from '../dropdownMenu/DropdownMenu';
-import {SORT_DROPDOWN_OPTIONS} from '../../utils/constants';
+import {DROPDOWN_OPTIONS} from '../../utils/constants';
 import styles from './List.module.css';
 
 function EmployeeListHeader({count, selectHandler}) {
@@ -8,7 +8,7 @@ function EmployeeListHeader({count, selectHandler}) {
 			<h3>RESULT {count}</h3>
 			<DropdownMenu
 				label='SORT BY'
-				options={SORT_DROPDOWN_OPTIONS}
+				options={DROPDOWN_OPTIONS}
 				selectHandler={selectHandler}
 			/>
 		</div>

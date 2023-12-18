@@ -1,9 +1,20 @@
+import DropdownMenu from '../dropdownMenu/DropdownMenu';
 import styles from './Search.module.css';
 
-function Search() {
+function Search({options, selectHandler, changeHandler}) {
 	return (
-		<div className={styles.container}>
-			<h1>Search</h1>
+		<div className={styles.search}>
+			<DropdownMenu
+				label='SEARCH BY'
+				options={options}
+				selectHandler={selectHandler}
+			/>
+
+			<input
+				type='text'
+				placeholder='Search...'
+				onChange={changeHandler}
+			/>
 		</div>
 	);
 }

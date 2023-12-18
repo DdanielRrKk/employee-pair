@@ -1,3 +1,7 @@
+:root {
+  --system-gray: rgb(229, 229, 234);
+}
+
 * {
   padding: 0;
   margin: 0;
