@@ -71,4 +71,8 @@ function parseDate(dateString) {
 	return new Date(dateObj.year, dateObj.month - 1, dateObj.day);
 }
 
-export {convertCSVToArray, convertJSONToArray, sanitazeArray};
+function convertDateToString(date) {
+	return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+}
+
+export {convertCSVToArray, convertJSONToArray, sanitazeArray, convertDateToString};

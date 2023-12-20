@@ -5,11 +5,42 @@
     cursor: pointer;
 }
 
-.fileInput > label {
+.fileInput>label {
     margin-right: 10px;
     cursor: pointer;
 }
 
-.radioInput > input {
+
+.radioInput label {
+    color: #333;
+    font-size: 16px;
+    align-items: center;
+}
+
+.radioInput>input {
     padding-right: 10px;
+}
+
+
+.radioInput input[type="radio"] {
+    margin-right: 8px;
+    cursor: pointer;
+}
+
+/* Style for the radio button */
+.radioInput input[type="radio"]::before {
+    width: 14px;
+    height: 14px;
+    content: '';
+    display: block;
+    border: 1px solid #007bff;
+    border-radius: 50%;
+    background-color: #fff;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+/* Style for the checked radio button */
+.radioInput input[type="radio"]:checked::before {
+    background-color: #007bff;
+    border-color: #007bff;
 }

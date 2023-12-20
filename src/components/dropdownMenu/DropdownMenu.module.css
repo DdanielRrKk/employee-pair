@@ -1,10 +1,53 @@
 .container {
+    width: fit-content;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
 }
 
-.container > h3 {
+.container>h3 {
+    width: 100%;
+    text-align: end;
     margin-right: 8px;
+}
+
+
+.select {
+    width: 120px;
+    padding: 3px 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.select:hover {
+    border-color: #007bff;
+}
+
+.select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.7);
+}
+
+.select:after {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+option {
+    background-color: #fff;
+    color: #333;
+}
+
+.option:hover {
+    background-color: #007bff;
+    color: #fff;
 }

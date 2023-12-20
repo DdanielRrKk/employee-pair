@@ -1,8 +1,10 @@
 import styles from './EmployeeItem.module.css';
+import {convertDateToString} from '../../utils/converters';
 
 function EmployeeItem({employee}) {
-	const dateFrom = employee?.DateFrom.toLocaleDateString();
-	const dateTo = employee?.DateTo.toLocaleDateString();
+	console.log('employee', employee);
+	const dateFrom = convertDateToString(employee?.DateFrom);
+	const dateTo = convertDateToString(employee?.DateTo);
 	return (
 		<div className={styles.container}>
 			<div>

@@ -1,7 +1,6 @@
 import {Routes, Route} from 'react-router-dom';
 
 import Feed from './pages/feed/Feed';
-import Stats from './pages/stats/Stats';
 import Controls from './pages/controls/Controls';
 
 import './App.css';
@@ -17,10 +16,6 @@ function App() {
 				<Route
 					path=''
 					element={<Feed />}
-				/>
-				<Route
-					path='/stats'
-					element={<Stats />}
 				/>
 				<Route
 					path='/controls'

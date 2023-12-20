@@ -11,9 +11,6 @@ function Navbar() {
 					<NavLink to='/'>Home</NavLink>
 				</li>
 				<li>
-					<NavLink to='/stats'>Stats</NavLink>
-				</li>
-				<li>
 					<NavLink to='/controls'>Controls</NavLink>
 				</li>
 			</ul>

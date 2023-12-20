@@ -1,15 +1,12 @@
 .search {
+    width: 100%;
     display: flex;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
-    width: 100%;
 }
 
-.search > h3 {
-    margin-right: 8px;
-}
-
-.search > input {
+.search>input {
     margin-left: 8px;
     font-size: 18px;
     padding: 8px 24px;
