@@ -17,9 +17,12 @@
 
 .pair>p {
     margin-top: 10px;
-    font-weight: 600;
 }
 
 .pair span {
-    text-decoration: underline;
+    font-weight: 900;
+}
+
+.pair>h4 {
+    font-weight: 600;
 }

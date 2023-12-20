@@ -1,5 +1,7 @@
 :root {
   --system-gray: rgb(229, 229, 234);
+  --primary-color: rgb(0, 123, 255);
+  --secondary-color: rgb(255, 193, 7);
 }
 
 * {

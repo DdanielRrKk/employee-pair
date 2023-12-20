@@ -10,7 +10,7 @@
     background-color: white;
 }
 
-.container > h3 {
+.container>h3 {
     width: 100%;
     text-align: left;
 }
@@ -34,13 +34,16 @@
 
 .reset {
     width: 100%;
-    background-color: black;
-    color: white;
-    padding: 3px 5px;
+    padding: 5px 10px;
+    background-color: var(--secondary-color);
+    color: black;
+    font-weight: 600;
     border-radius: 5px;
+    border: 1px solid var(--secondary-color);
     cursor: pointer;
 }
+
 .reset:hover {
     background-color: white;
-    color: black;
+    color: var(--secondary-color);
 }

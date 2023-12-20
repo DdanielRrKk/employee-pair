@@ -10,12 +10,13 @@
     border-radius: 5px;
 }
 
-.container > div {
+.container>div {
     width: 100%;
     text-align: center;
 }
 
-.header, .info {
+.header,
+.info {
     padding: 6px;
 }
 
@@ -24,7 +25,8 @@
 }
 
 .info {
-    background-color: gray;
+    background-color: var(--primary-color);
     color: white;
     border-radius: 10px;
+    font-weight: 900;
 }
