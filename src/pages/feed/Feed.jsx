@@ -5,19 +5,15 @@ import FileInput from '../../components/input/FileInput';
 import EmployeeList from '../../components/list/EmployeeList';
 import FilterPanel from '../../components/filter/Filter';
 import StatisticsPanel from '../../components/statistics/Statistics';
-
-import {convertCSVToArray, convertJSONToArray} from '../../utils/converters';
-import {
-	filterArrayOnlyCurrentlyWorking,
-	filterarrayOnlyNotWorking,
-	filterArrayByValueInProperty,
-} from '../../utils/filters';
-import {FILTER_OPTIONS, DROPDOWN_OPTIONS} from '../../utils/constants';
-import {sortByProperty} from '../../utils/sort';
-
-import styles from './Feed.module.css';
 import Search from '../../components/search/Search';
 import ErrorBox from '../../components/error/ErrorBox';
+
+import {convertCSVToArray, convertJSONToArray} from '../../utils/converters';
+import {filterArrayByValueInProperty, filterArrayBasedOnOption} from '../../utils/filters';
+import {sortByProperty} from '../../utils/sort';
+import {FILTER_OPTIONS, DROPDOWN_OPTIONS} from '../../utils/constants';
+
+import styles from './Feed.module.css';
 
 function Feed() {
 	const {state, setEmployees} = useEmployee();
@@ -33,17 +29,6 @@ function Feed() {
 	useEffect(() => {
 		setEmployeeArray(state);
 	}, [state]);
-
-	useEffect(() => {
-		if (searchValue === '') {
-			setEmployeeArray(state);
-		}
-
-		if (state.length === 0 || !searchValue || !searchOption) {
-			return;
-		}
-		setEmployeeArray(filterArrayByValueInProperty(state, searchOption, searchValue));
-	}, [searchValue, searchOption, state]);
 
 	const handleFileUpload = e => {
 		e.preventDefault();
@@ -70,23 +55,21 @@ function Feed() {
 		}
 
 		reader.readAsText(e.target.files[0]);
+
+		setFilterValue('none');
+		setSortValue('none');
 		setErrorMessage(null);
 	};
 
-	function handleFilterChange(selectedValue) {
-		switch (selectedValue) {
-			case 'working':
-				setEmployeeArray(filterArrayOnlyCurrentlyWorking(state));
-				break;
-			case 'notWorking':
-				setEmployeeArray(filterarrayOnlyNotWorking(state));
-				break;
-			default:
-				setErrorMessage('Not supported filter type');
-				return;
-		}
+	function handleFilterChange(value) {
+		let array = filterArrayBasedOnOption(state, value);
 
-		setFilterValue(selectedValue);
+		if (sortValue !== 'none') {
+			array = sortByProperty(array, sortValue);
+		}
+		setEmployeeArray(array);
+
+		setFilterValue(value);
 		setErrorMessage(null);
 	}
 
@@ -100,30 +83,47 @@ function Feed() {
 			setErrorMessage('Not supported sort type');
 			return;
 		}
-
 		setSortValue(value);
 
-		if (value === 'none') {
-			setEmployeeArray(state);
-			return;
-		}
-
-		const sortedArray = sortByProperty(state, value);
-		setEmployees(sortedArray);
-		setEmployeeArray(sortedArray);
+		const array = filterArrayBasedOnOption(state, filterValue);
+		setEmployeeArray(sortByProperty(array, value));
 	}
 
 	function handleSearchOption(value) {
-		if (!value) {
+		const option = value;
+
+		if (!option) {
 			setErrorMessage('Not supported search type');
 			return;
 		}
-		setSearchOption(value);
+
+		if (option === 'none') {
+			return;
+		}
+
+		const array = filterArrayBasedOnOption(state, filterValue);
+		const filteredArray = filterArrayByValueInProperty(array, option, searchValue);
+		setEmployeeArray(filteredArray);
+
+		setSearchOption(option);
 		setErrorMessage(null);
 	}
 
 	function handleSearchInputChange(e) {
-		setSearchValue(e.target.value);
+		const value = e.target.value;
+
+		console.log('value', value);
+		console.log('searchValue', searchValue);
+
+		if (state.length === 0 || !searchOption) {
+			return;
+		}
+
+		const array = filterArrayBasedOnOption(state, filterValue);
+		const filteredArray = filterArrayByValueInProperty(array, searchOption, value);
+		setEmployeeArray(filteredArray);
+
+		setSearchValue(value);
 	}
 
 	return (
@@ -140,18 +140,24 @@ function Feed() {
 
 			{!!employeeArray && (
 				<div className={styles.content}>
-					<FilterPanel
-						options={FILTER_OPTIONS}
-						filterHandler={handleFilterChange}
-						resetHandler={handleResetFilters}
-					/>
+					<div className={styles.filter}>
+						<FilterPanel
+							options={FILTER_OPTIONS}
+							filterHandler={handleFilterChange}
+							resetHandler={handleResetFilters}
+						/>
+					</div>
 
-					<EmployeeList
-						employees={employeeArray}
-						selectHandler={handleSortOption}
-					/>
+					<div className={styles.employees}>
+						<EmployeeList
+							employees={employeeArray}
+							selectHandler={handleSortOption}
+						/>
+					</div>
 
-					<StatisticsPanel />
+					<div className={styles.stats}>
+						<StatisticsPanel />
+					</div>
 				</div>
 			)}
 		</div>

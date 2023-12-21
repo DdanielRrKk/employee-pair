@@ -1,3 +1,18 @@
+import {convertDateToString} from './converters';
+
+function filterArrayBasedOnOption(array, option) {
+	switch (option) {
+		case 'none':
+			return array;
+		case 'working':
+			return filterArrayOnlyCurrentlyWorking(array);
+		case 'notWorking':
+			return filterArrayOnlyNotWorking(array);
+		default:
+			return array;
+	}
+}
+
 function filterArrayOnlyCurrentlyWorking(array) {
 	return array.filter(employee => {
 		const today = new Date();
@@ -10,7 +25,7 @@ function filterArrayOnlyCurrentlyWorking(array) {
 	});
 }
 
-function filterarrayOnlyNotWorking(array) {
+function filterArrayOnlyNotWorking(array) {
 	return array.filter(employee => {
 		const today = new Date();
 		const dateTo = new Date(employee.DateTo);
@@ -23,7 +38,17 @@ function filterarrayOnlyNotWorking(array) {
 }
 
 function filterArrayByValueInProperty(array, property, value) {
-	return array.filter(employee => employee[property].toString().startsWith(value));
+	return array.filter(employee => {
+		if (employee[property] instanceof Date) {
+			return convertDateToString(employee[property]).startsWith(value);
+		}
+		return employee[property].toString().startsWith(value);
+	});
 }
 
-export {filterArrayOnlyCurrentlyWorking, filterarrayOnlyNotWorking, filterArrayByValueInProperty};
+export {
+	filterArrayOnlyCurrentlyWorking,
+	filterArrayOnlyNotWorking,
+	filterArrayByValueInProperty,
+	filterArrayBasedOnOption,
+};

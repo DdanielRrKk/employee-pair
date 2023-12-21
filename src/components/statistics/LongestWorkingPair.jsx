@@ -10,23 +10,26 @@ function LongestWorkingPair() {
 	useEffect(() => {
 		const pair = getLongestWorkingEmployeePair(state);
 		setLongestWorkingEmployeePair(pair);
-		console.log(pair);
 	}, [state]);
 
 	return (
 		<div className={styles.pair}>
-			<h4>Longest working employee pair:</h4>
+			<h4>Longest Working Employee Pair:</h4>
 			{longestWorkingEmployeePair?.employee1 === null ||
 			longestWorkingEmployeePair?.employee2 === null ? (
-				<p>No pair</p>
+				<p>No pair has worked together</p>
 			) : (
 				<>
-					<p>
-						Employee 1: <span>{longestWorkingEmployeePair?.employee1.EmpID}</span>
-					</p>
-					<p>
-						Employee 2: <span>{longestWorkingEmployeePair?.employee2.EmpID}</span>
-					</p>
+					<div className={styles.pairInfo}>
+						<p>Employee 1:</p>
+						<span>{longestWorkingEmployeePair?.employee1.EmpID}</span>
+					</div>
+
+					<div className={styles.pairInfo}>
+						<p>Employee 2:</p>
+						<span>{longestWorkingEmployeePair?.employee2.EmpID}</span>
+					</div>
+
 					<p>
 						Worked together for:{' '}
 						<span>{longestWorkingEmployeePair?.daysWorkedTogether}</span> days

@@ -13,14 +13,18 @@ function EmployeeList({employees, selectHandler}) {
 			/>
 
 			<div className={styles.content}>
-				{employees.map((employee, index) => {
-					return (
-						<EmployeeItem
-							key={index}
-							employee={employee}
-						/>
-					);
-				})}
+				{employees.length === 0 ? (
+					<div className={styles.noData}>No data</div>
+				) : (
+					employees.map((employee, index) => {
+						return (
+							<EmployeeItem
+								key={index}
+								employee={employee}
+							/>
+						);
+					})
+				)}
 			</div>
 		</div>
 	);

@@ -1,33 +1,91 @@
 import {REGEX_WHITESPACES, CSV_SEPARATOR} from './constants';
-import {isDateNull, isDateStringValid, isDateValuesValid} from './validators';
+import {
+	areDatesFromAndToValid,
+	isDateParsedCorrectly,
+	isDateNull,
+	isDateStringValid,
+	isDateValuesValid,
+	isNumberValid,
+} from './validators';
 
 function convertCSVToArray(csv) {
-	const array = csv.split(REGEX_WHITESPACES).map(item => {
-		const fields = sanitazeArray(item.split(CSV_SEPARATOR));
-		return {
-			EmpID: parseInt(fields[0]),
-			ProjectID: parseInt(fields[1]),
-			DateFrom: parseDate(fields[2]),
-			DateTo: parseDate(fields[3]),
-		};
-	});
+	const array = sanitazeArray(
+		csv.split(REGEX_WHITESPACES).map(item => {
+			const fields = sanitazeFields(item.split(CSV_SEPARATOR));
+
+			if (!isNumberValid(fields[0]) || !isNumberValid(fields[1])) {
+				return null;
+			}
+
+			let parsedData = {};
+			try {
+				parsedData = {
+					EmpID: parseInt(fields[0]),
+					ProjectID: parseInt(fields[1]),
+					DateFrom: parseDate(fields[2]),
+					DateTo: parseDate(fields[3]),
+				};
+			} catch (error) {
+				console.error(error);
+				return null;
+			}
+
+			if (!areDatesFromAndToValid(parsedData.DateFrom, parsedData.DateTo)) {
+				return null;
+			}
+
+			if (!isDateParsedCorrectly(parsedData.DateFrom) || !isDateParsedCorrectly(parsedData.DateTo)) {
+				return null;
+			}
+
+			return parsedData;
+		})
+	);
 	return array;
 }
 
 function convertJSONToArray(json) {
-	return JSON.parse(json).map(item => {
-		const fields = Object.values(item);
-		return {
-			EmpID: parseInt(fields[0]),
-			ProjectID: parseInt(fields[1]),
-			DateFrom: parseDate(fields[2]),
-			DateTo: parseDate(fields[3]),
-		};
-	});
+	const array = sanitazeArray(
+		JSON.parse(json).map(item => {
+			const fields = sanitazeFields(Object.values(item));
+
+			if (!isNumberValid(fields[0]) || !isNumberValid(fields[1])) {
+				return null;
+			}
+
+			let parsedData = {};
+			try {
+				parsedData = {
+					EmpID: parseInt(fields[0]),
+					ProjectID: parseInt(fields[1]),
+					DateFrom: parseDate(fields[2]),
+					DateTo: parseDate(fields[3]),
+				};
+			} catch (error) {
+				console.error(error);
+				return null;
+			}
+
+			if (!isDateParsedCorrectly(parsedData.DateFrom) || !isDateParsedCorrectly(parsedData.DateTo)) {
+				return null;
+			}
+
+			if (!areDatesFromAndToValid(parsedData.DateFrom, parsedData.DateTo)) {
+				return null;
+			}
+
+			return parsedData;
+		})
+	);
+	return array;
 }
 
 function sanitazeArray(array) {
-	return array.map(item => item.trim());
+	return array.filter(item => item !== null);
+}
+
+function sanitazeFields(fields) {
+	return fields.map(item => item.trim());
 }
 
 function parseDate(dateString) {
@@ -72,7 +130,9 @@ function parseDate(dateString) {
 }
 
 function convertDateToString(date) {
-	return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}`;
+	return `${date.getFullYear()}-${date.getMonth() < 10 ? '0' : ''}${date.getMonth() + 1}-${
+		date.getDate() < 10 ? '0' : ''
+	}${date.getDate()}`;
 }
 
 export {convertCSVToArray, convertJSONToArray, sanitazeArray, convertDateToString};

@@ -1,10 +1,9 @@
-import styles from './EmployeeItem.module.css';
 import {convertDateToString} from '../../utils/converters';
+import styles from './EmployeeItem.module.css';
 
 function EmployeeItem({employee}) {
-	console.log('employee', employee);
-	const dateFrom = convertDateToString(employee?.DateFrom);
-	const dateTo = convertDateToString(employee?.DateTo);
+	const dateFrom = convertDateToString(employee.DateFrom);
+	const dateTo = convertDateToString(employee.DateTo);
 	return (
 		<div className={styles.container}>
 			<div>

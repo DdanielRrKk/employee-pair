@@ -16,8 +16,9 @@ function getLongestWorkingEmployeePair(array) {
 	for (let i = 0; i < array.length; i++) {
 		const employee1 = array[i];
 
-		for (let j = 0; j < array.length; j++) {
+		for (let j = i + 1; j < array.length; j++) {
 			const employee2 = array[j];
+
 			if (employee1.EmpID === employee2.EmpID) continue;
 
 			if (employee1.ProjectID === employee2.ProjectID) {

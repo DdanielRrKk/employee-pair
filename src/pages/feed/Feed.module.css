@@ -2,7 +2,7 @@
     width: 100%;
     max-width: 1440px;
     height: 100%;
-    min-width: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -17,4 +17,49 @@
     justify-content: center;
     align-items: flex-start;
     gap: 20px;
+}
+
+.filter {
+    order: 1;
+}
+
+.employees {
+    order: 2;
+}
+
+.stats {
+    order: 3;
+}
+
+.filter,
+.stats {
+    width: 20%;
+}
+
+.employees {
+    width: 60%;
+}
+
+@media screen and (max-width: 1024px) {
+
+    .content {
+        flex-direction: column;
+    }
+
+    .filter {
+        order: 2;
+    }
+
+    .stats {
+        order: 1;
+    }
+
+    .filter,
+    .stats {
+        width: 100%;
+    }
+
+    .employees {
+        width: 100%;
+    }
 }
