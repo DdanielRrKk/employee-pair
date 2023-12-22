@@ -1,10 +1,9 @@
-import {useState} from 'react';
+import React from 'react';
 import EmployeeListHeader from './EmployeeListHeader';
 import EmployeeItem from '../item/EmployeeItem';
 import styles from './List.module.css';
 
 function EmployeeList({employees, selectHandler}) {
-	// const [sortOption, setSortOption] = useState('EmpID');
 	return (
 		<div className={styles.container}>
 			<EmployeeListHeader
@@ -18,10 +17,13 @@ function EmployeeList({employees, selectHandler}) {
 				) : (
 					employees.map((employee, index) => {
 						return (
-							<EmployeeItem
-								key={index}
-								employee={employee}
-							/>
+							<React.Fragment key={index}>
+								<EmployeeItem employee={employee} />
+
+								{index < employees.length - 1 && (
+									<hr className={styles.divider} />
+								)}
+							</React.Fragment>
 						);
 					})
 				)}

@@ -7,9 +7,18 @@
 }
 
 .search>input {
+    width: 100%;
+    max-width: 200px;
     margin-left: 8px;
     font-size: 18px;
     padding: 8px 24px;
     border: none;
     border-radius: 20px;
+}
+
+@media screen and (max-width: 768px) {
+    .search {
+        flex-direction: column;
+        gap: 10px;
+    }
 }

@@ -25,6 +25,18 @@
     gap: 10px;
 }
 
+.divider {
+    width: 90%;
+    height: 1px;
+    background-color: gray;
+}
+
 .noData {
     font-weight: 600;
+}
+
+@media screen and (max-width: 480px) {
+    .header {
+        flex-direction: column;
+    }
 }
