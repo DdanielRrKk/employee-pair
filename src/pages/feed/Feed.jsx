@@ -112,9 +112,6 @@ function Feed() {
 	function handleSearchInputChange(e) {
 		const value = e.target.value;
 
-		console.log('value', value);
-		console.log('searchValue', searchValue);
-
 		if (state.length === 0 || !searchOption) {
 			return;
 		}

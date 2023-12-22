@@ -85,7 +85,12 @@ function sanitazeArray(array) {
 }
 
 function sanitazeFields(fields) {
-	return fields.map(item => item.trim());
+	return fields.map(item => {
+		if (!isNaN(item)) {
+			return item;
+		}
+		return item.trim();
+	});
 }
 
 function parseDate(dateString) {

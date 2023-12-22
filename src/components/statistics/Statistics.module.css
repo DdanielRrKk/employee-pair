@@ -17,19 +17,25 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 30px;
     text-align: left;
 }
 
-.pair>h4 {
+.pair>div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.pair>div>h4 {
     font-weight: 600;
 }
 
-.pair>p {
+.pair>div>p {
     font-weight: 600;
 }
 
-.pair>p>span {
+.pair>div>p>span {
     color: var(--primary-color);
     font-weight: 900;
 }
