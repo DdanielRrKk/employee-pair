@@ -1,7 +1,7 @@
 import {Routes, Route} from 'react-router-dom';
 
 import Feed from './pages/feed/Feed';
-import Controls from './pages/controls/Controls';
+import Statistics from './pages/statistics/Statistics';
 
 import './App.css';
 import Layout from './pages/layout/Layout';
@@ -18,8 +18,8 @@ function App() {
 					element={<Feed />}
 				/>
 				<Route
-					path='/controls'
-					element={<Controls />}
+					path='/statistics'
+					element={<Statistics />}
 				/>
 			</Route>
 		</Routes>

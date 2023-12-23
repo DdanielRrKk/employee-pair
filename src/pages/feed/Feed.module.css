@@ -40,6 +40,15 @@
     width: 60%;
 }
 
+.bigSearch {
+    display: block;
+}
+
+.smallSearch {
+    display: none;
+    margin-bottom: 20px;
+}
+
 @media screen and (max-width: 1024px) {
 
     .content {
@@ -61,5 +70,13 @@
 
     .employees {
         width: 100%;
+    }
+
+    .bigSearch {
+        display: none;
+    }
+
+    .smallSearch {
+        display: block;
     }
 }

@@ -16,8 +16,6 @@ function LongestWorkingPair() {
 		const pairs = getLongestWorkingEmployeePairOnManyProjects(state);
 		const pair = getLongestWorkingEmployeePairOnSingleProject(state);
 
-		console.log('LongestWorkingPair', pairs, pair);
-
 		setLongestWorkingEmployeePairOnManyProjects(pairs);
 		setLongestWorkingEmployeePairOnSingleProject(pair);
 	}, [state]);
@@ -33,26 +31,20 @@ function LongestWorkingPair() {
 					<>
 						<div className={styles.pairInfo}>
 							<p>Pair:</p>
+							<span>{longestWorkingEmployeePairOnSingleProject?.pair}</span>
+						</div>
+						<div className={styles.pairInfo}>
+							<p>Project:</p>
 							<span>
-								{
-									longestWorkingEmployeePairOnSingleProject
-										?.employee1.EmpID
-								}
-								{' - '}
-								{
-									longestWorkingEmployeePairOnSingleProject
-										?.employee2.EmpID
-								}
+								{longestWorkingEmployeePairOnSingleProject?.ProjectID}
 							</span>
 						</div>
 
 						<p>
-							Worked together for:{' '}
-							<span>
-								{
-									longestWorkingEmployeePairOnSingleProject?.daysWorkedTogether
-								}
-							</span>{' '}
+							Worked together for:
+							<span className={styles.days}>
+								{` ${longestWorkingEmployeePairOnSingleProject?.daysWorkedTogether} `}
+							</span>
 							days
 						</p>
 					</>
@@ -60,7 +52,7 @@ function LongestWorkingPair() {
 			</div>
 
 			<div>
-				<h4>Longest Working Employee Pair On Many Projects:</h4>
+				<h4>Longest Working Employee Pair On Multiple Projects:</h4>
 				{longestWorkingEmployeePairOnSingleProject?.employee1 === null ||
 				longestWorkingEmployeePairOnSingleProject?.employee2 === null ? (
 					<p>No pairs found</p>
@@ -71,27 +63,32 @@ function LongestWorkingPair() {
 							<span>{longestWorkingEmployeePairOnManyProjects?.pairID}</span>
 						</div>
 
-						<p>
-							Worked together for:{' '}
-							<span>
-								{
-									longestWorkingEmployeePairOnManyProjects?.totalTimeWorked
-								}
-							</span>{' '}
-							days
-						</p>
-
-						<div>
+						<div className={styles.pairInfo}>
 							<p>Projects:</p>
 							{longestWorkingEmployeePairOnManyProjects?.projects.map(
 								project => (
-									<p key={project.ProjectID}>
-										{project.ProjectID} -{' '}
-										{project.daysWorkedTogether} days
-									</p>
+									<div className={styles.pairInfo}>
+										<span>{project?.ProjectID}</span>
+
+										<p>
+											For:
+											<span className={styles.days}>
+												{` ${project?.daysWorkedTogether} `}
+											</span>
+											days
+										</p>
+									</div>
 								)
 							)}
 						</div>
+
+						<p>
+							Total time:
+							<span className={styles.days}>
+								{` ${longestWorkingEmployeePairOnManyProjects?.totalTimeWorked} `}
+							</span>
+							days
+						</p>
 					</>
 				)}
 			</div>

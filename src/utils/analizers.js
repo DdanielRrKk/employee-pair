@@ -40,8 +40,8 @@ function getLongestWorkingEmployeePairOnSingleProject(array) {
 
 				if (daysWorkedTogether > pair.daysWorkedTogether) {
 					pair = {
-						employee1,
-						employee2,
+						pair: `${employee1.EmpID} - ${employee2.EmpID}`,
+						ProjectID: employee1.ProjectID,
 						daysWorkedTogether,
 					};
 				}

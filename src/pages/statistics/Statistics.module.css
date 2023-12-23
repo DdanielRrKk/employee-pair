@@ -1,0 +1,13 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    padding: 10px;
+    background-color: white;
+}
+
+.container>h3 {
+    text-transform: uppercase;
+}

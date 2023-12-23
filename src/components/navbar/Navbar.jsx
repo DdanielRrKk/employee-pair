@@ -4,14 +4,16 @@ import styles from './Navbar.module.css';
 function Navbar() {
 	return (
 		<nav className={styles.navbar}>
-			<span>Employee Pairs</span>
+			<p>
+				Employee <span>Pairs</span>
+			</p>
 
 			<ul>
 				<li>
 					<NavLink to='/'>Home</NavLink>
 				</li>
 				<li>
-					<NavLink to='/controls'>Controls</NavLink>
+					<NavLink to='/statistics'>Statistics</NavLink>
 				</li>
 			</ul>
 		</nav>

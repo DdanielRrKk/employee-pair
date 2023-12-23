@@ -129,11 +129,13 @@ function Feed() {
 
 			<FileInput uploadHandler={handleFileUpload} />
 
-			<Search
-				options={DROPDOWN_OPTIONS}
-				selectHandler={handleSearchOption}
-				changeHandler={handleSearchInputChange}
-			/>
+			<div className={styles.bigSearch}>
+				<Search
+					options={DROPDOWN_OPTIONS}
+					selectHandler={handleSearchOption}
+					changeHandler={handleSearchInputChange}
+				/>
+			</div>
 
 			{!!employeeArray && (
 				<div className={styles.content}>
@@ -146,6 +148,14 @@ function Feed() {
 					</div>
 
 					<div className={styles.employees}>
+						<div className={styles.smallSearch}>
+							<Search
+								options={DROPDOWN_OPTIONS}
+								selectHandler={handleSearchOption}
+								changeHandler={handleSearchInputChange}
+							/>
+						</div>
+
 						<EmployeeList
 							employees={employeeArray}
 							selectHandler={handleSortOption}

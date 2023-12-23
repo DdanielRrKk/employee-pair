@@ -3,23 +3,34 @@
     justify-content: flex-start;
 }
 
-.navbar > ul {
+.navbar>ul {
     gap: 30px;
 }
 
-.navbar, .navbar > ul {
+.navbar,
+.navbar>ul {
     display: flex;
     flex-direction: row;
     align-items: center;
 }
 
-.navbar > span {
+.navbar>p {
+    text-transform: uppercase;
     margin-right: 30px;
     font-size: 24px;
     font-weight: 600;
 }
 
-.navbar > ul > li > a {
+.navbar>p>span {
+    color: var(--secondary-color);
+}
+
+.navbar>ul>li>a {
+    color: var(--primary-color);
     font-size: 18px;
     font-weight: 600;
+}
+
+.navbar>ul>li>a:hover {
+    border-bottom: 1px solid var(--primary-color);
 }

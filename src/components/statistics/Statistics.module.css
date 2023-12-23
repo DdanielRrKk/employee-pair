@@ -35,22 +35,19 @@
     font-weight: 600;
 }
 
-.pair>div>p>span {
+.days {
     color: var(--primary-color);
     font-weight: 900;
 }
 
 .pairInfo {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    gap: 5px;
 }
 
-.pairInfo p {
-    font-weight: 600;
-}
-
-.pairInfo span {
+.pairInfo>span {
+    text-align: center;
     background-color: var(--primary-color);
     color: white;
     font-weight: 900;
