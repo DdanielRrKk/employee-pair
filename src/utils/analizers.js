@@ -94,7 +94,6 @@ function getLongestWorkingEmployeePairOnManyProjects(array) {
 		projects: null,
 		totalTimeWorked: 0,
 	};
-	const pairsDurations = [];
 
 	pairs.forEach(pair => {
 		let accumulator = 0;
@@ -119,8 +118,6 @@ function getLongestWorkingEmployeePairOnManyProjects(array) {
 		if (temp.totalTimeWorked > longestWorkingPair.totalTimeWorked) {
 			longestWorkingPair = temp;
 		}
-
-		pairsDurations.push(temp);
 	});
 
 	return longestWorkingPair;

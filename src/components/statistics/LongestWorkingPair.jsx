@@ -66,8 +66,11 @@ function LongestWorkingPair() {
 						<div className={styles.pairInfo}>
 							<p>Projects:</p>
 							{longestWorkingEmployeePairOnManyProjects?.projects.map(
-								project => (
-									<div className={styles.pairInfo}>
+								(project, index) => (
+									<div
+										key={index}
+										className={styles.pairInfo}
+									>
 										<span>{project?.ProjectID}</span>
 
 										<p>

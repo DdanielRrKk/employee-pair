@@ -1,11 +1,14 @@
 [
     {"EmpID": 143, "ProjectID": 12, "DateFrom": "2013-11-01", "DateTo": "2014-01-05"},
-    {"EmpID": 218, "ProjectID": 10, "DateFrom": "2012-05-16", "DateTo": "2023-12-22"},
+    {"EmpID": 218, "ProjectID": 10, "DateFrom": "2012-05-16", "DateTo": null},
     {"EmpID": 143, "ProjectID": 10, "DateFrom": "2009-01-01", "DateTo": "2011-04-27"},
     {"EmpID": 145, "ProjectID": 10, "DateFrom": "2010-03-01", "DateTo": "2011-04-27"},
     {"EmpID": 143, "ProjectID": 44, "DateFrom": "2011-01-01", "DateTo": "2017-04-27"},
     {"EmpID": 145, "ProjectID": 44, "DateFrom": "2012-03-01", "DateTo": "2017-04-27"},
     {"EmpID": 85, "ProjectID": 25, "DateFrom": "2021-07-12", "DateTo": "2022-04-15"},
     {"EmpID": 301, "ProjectID": 2, "DateFrom": "2015-12-02", "DateTo": "2018-02-22"},
-    {"EmpID": 90, "ProjectID": 2, "DateFrom": "2016-06-12", "DateTo": "2023-12-22"}
+    {"EmpID": 90, "ProjectID": 2, "DateFrom": "2016-06-12", "DateTo": null},
+    {"EmpID": "aaa", "ProjectID": 10, "DateFrom": "2010-06-12", "DateTo": "2001-01-01"},
+    {"EmpID": 90, "ProjectID": 10, "DateFrom": "2010-06-12", "DateTo": "2001-01-01"},
+    {"EmpID": 90, "ProjectID": 10, "DateFrom": "2016-06-12", "DateTo": "20-35-01"}
 ]

@@ -30,11 +30,11 @@ function convertCSVToArray(csv) {
 				return null;
 			}
 
-			if (!areDatesFromAndToValid(parsedData.DateFrom, parsedData.DateTo)) {
+			if (!isDateParsedCorrectly(parsedData.DateFrom) || !isDateParsedCorrectly(parsedData.DateTo)) {
 				return null;
 			}
 
-			if (!isDateParsedCorrectly(parsedData.DateFrom) || !isDateParsedCorrectly(parsedData.DateTo)) {
+			if (!areDatesFromAndToValid(parsedData.DateFrom, parsedData.DateTo)) {
 				return null;
 			}
 

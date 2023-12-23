@@ -1,70 +1,82 @@
-# Getting Started with Create React App
+# Employee Pair Duration Calculator
+Целта на този проект е да прочете информация от '.csv' или '.json' файл, и да намери двойката служители, работили най-дълго време заедно върху различни проекти.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Стартиране на проекта
+За стартирането на проекта е нужно да се направи обикновен React проект използвайки:
 
-## Available Scripts
+### `npx create-react-app employee-pair`
 
-In the project directory, you can run:
+След това е нужно да се инсталира 'react-router-dom' за да може да се навигира между отделните страници:
+
+### `npm install react-router-dom`
+
+За стартиране на проекта се използва:
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Четене на данните
+При избор на файл, от който да се прочетат данни, може да се избере единствено от 2 вида файлове ('.csv' и '.json'). След избора на файл се използва една от две функции за извличането на данни от файла, спрямо разширението.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+При файл с разширение '.csv' се използва функцията 'convertCSVToArray', която извършва следния алгоритъм:
+- Създава масив от прочетената информация разделена спрямо разделител (`/\r\n|\r|\n/`);
+- Създава масив от обекти, като взима по един ред от масива с разделена информация и извършва следните действия:
+    - Почистване на полетата;
+    - Проверка за валидни числа;
+    - Преобразуване на текст в числа и дати;
+    - Проверка дали датите са се преобразували от текст в дата коректно;
+    - Проверка дали датите са валидни (началната дата не е след крайната дата);
+- Филтриране на невалидните обекти в масива.
 
-### `npm test`
+При файл с разширение '.json' се използва функцията 'convertCSVToArray', която извършва подобен алгоритъм:
+- Преобразува информацията от файла в масив с обекти;
+- Създава масив от обекти, като взима всеки обект от преобразувания масив и извършва следните действия:
+    - Почистване на полетата;
+    - Проверка за валидни числа;
+    - Преобразуване на текст в числа и дати;
+    - Проверка дали датите са се преобразували от текст в дата коректно;
+    - Проверка дали датите са валидни (началната дата не е след крайната дата);
+- Филтриране на невалидните обекти в масива.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Търсене на най-дълго работеща двойка
+За търсенето на най-дълго работещата двойка са създадени две функции. Една функция за търсене на най-дълго работещата двойка върху един проект 'getLongestWorkingEmployeePairOnSingleProject' и най-дълго работещата двойка върху няколко проекта 'getLongestWorkingEmployeePairOnManyProjects'. Алгоритмите които се извършват са следните:
 
-### `npm run build`
+При 'getLongestWorkingEmployeePairOnSingleProject' алгоритъма е:
+- Създава се временна променлива която ще държи крайния резултат;
+- Стартиране на цикъл, с който ще се обходят всички служители;
+- Стартиране на вложен цикъл, за всеки служител, за да може да се сравнят всеки служител с всеки. Вложения цикъл започва с индекс равен на индекса на главния цикъл плюс 1 (от следващия служител до края);
+- Проверява се дали обектите съдържат информация за един и същ проект;
+- Проверява се дали обектите не представляват работата на един и същ служител;
+- Проверява се дали времевите диапазони на двата служителя се застъпват;
+- Презсмята се колко е работеното време на двата служителя в дни;
+- Ако презсметнатото време е по-голямо от времето на предно презсметнатите служители, новата информация се записва на място на старата.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+При 'getLongestWorkingEmployeePairOnManyProjects' алгоритъма е:
+- Създава се временен масив в който ще се държат всички записи на двойки работили заедно върху проект;
+- Стартиране на цикъл, с който ще се обходят всички служители;
+- Стартиране на вложен цикъл, за всеки служител, за да може да се сравнят всеки служител с всеки. Вложения цикъл започва с индекс равен на индекса на главния цикъл плюс 1 (от следващия служител до края);
+- Проверява се дали обектите съдържат информация за един и същ проект;
+- Проверява се дали обектите не представляват работата на един и същ служител;
+- Проверява се дали времевите диапазони на двата служителя се застъпват;
+- Презсмята се колко е работеното време на двата служителя в дни;
+- Добавяне на информацията във временния масива;
+- Създава се временна променлива която ще държи крайния резултат;
+- Стартиране на цикъл за обхождане на всички записи за работещи двойки върху проект;
+- Стартиране на вложен цикъл за, всяка двойка, за да се намерят двойките работили заедно и върху други проекти също. Смисалът на този цикъл е да се презсметне общата сума на дните работени от определената двойка;
+- Ако общото работено време на определената двойка е по-голямо от общото време на предно презсметнатата двойка, новата информация се записва на мястото на старата.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Допълнителни функционалности
+В приложението са добавени:
+- Функционалност за филтриране. Показване на записите в които служителя е работил върху даден проект, но вече не работят, и записите в които все още работи върху проект;
+- Функционалност за търсене на запис спрямо стойностите му за "EmpID", "ProjectID", "DateFrom" и "DateTo";
+- Функционалност за сортиране на записите спрямо стойностите му за "EmpID", "ProjectID", "DateFrom" и "DateTo";
+> ! Функционалностите за филтриране, търсене и сортиране са напълно интегрирани и могат да работят заедно без проблем.
+- Поддържат се следните формати за дати:
+    - `yyyy-MM-dd`;
+    - `yyyy-dd-MM`;
+    - `dd-MM-yyyy`;
+    - `MM-dd-yyyy`;
+    - `yyyy/MM/dd`;
+    - `yyyy/dd/MM`;
+    - `dd/MM/yyyy`;
+    - `MM/dd/yyyy`;
+- Дизайна на приложението е адаптивен и е напълно пригоден и за мобилни устройства.
