@@ -3,7 +3,7 @@ import {doDateRangesOverlap} from './validators';
 function calculateDaysFromDateToDate(dateFrom, dateTo) {
 	const diffTime = Math.abs(dateFrom - dateTo);
 	const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)); // convert ms to days
-	return diffDays;
+	return diffDays + 1;
 }
 
 function getLongestWorkingEmployeePairOnSingleProject(array) {
@@ -33,10 +33,14 @@ function getLongestWorkingEmployeePairOnSingleProject(array) {
 					continue;
 				}
 
-				const daysWorkedTogether = calculateDaysFromDateToDate(
-					employee1.DateFrom,
-					employee2.DateTo
-				);
+				let dateStart =
+					employee1.DateFrom < employee2.DateFrom
+						? employee2.DateFrom
+						: employee1.DateFrom;
+
+				let dateEnd = employee1.DateTo > employee2.DateTo ? employee2.DateTo : employee1.DateTo;
+
+				const daysWorkedTogether = calculateDaysFromDateToDate(dateStart, dateEnd);
 
 				if (daysWorkedTogether > pair.daysWorkedTogether) {
 					pair = {
